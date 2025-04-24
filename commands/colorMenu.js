@@ -6,7 +6,7 @@ module.exports = {
         .setName('rengmenu')
         .setDescription('Rəng seçmə menyusunu göndərir')
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
-    
+
     async execute(interaction) {
         // Rəng rollarını oxuyuruq
         let rengRollari;

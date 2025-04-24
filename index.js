@@ -46,3 +46,31 @@ for (const file of eventFiles) {
 
 // Botu işə salmaq
 client.login(process.env.TOKEN);
+// index.js içindəki əmrlərin oxunduğu hissə
+const commands = new Collection();
+
+// Global əmrləri oxu
+const globalCommandsPath = path.join(__dirname, 'commands', 'global');
+if (fs.existsSync(globalCommandsPath)) {
+    const globalCommandFiles = fs.readdirSync(globalCommandsPath).filter(file => file.endsWith('.js'));
+    for (const file of globalCommandFiles) {
+        const filePath = path.join(globalCommandsPath, file);
+        const command = require(filePath);
+        if ('data' in command && 'execute' in command) {
+            commands.set(command.data.name, command);
+        }
+    }
+}
+
+// Local əmrləri oxu
+const localCommandsPath = path.join(__dirname, 'commands', 'local');
+if (fs.existsSync(localCommandsPath)) {
+    const localCommandFiles = fs.readdirSync(localCommandsPath).filter(file => file.endsWith('.js'));
+    for (const file of localCommandFiles) {
+        const filePath = path.join(localCommandsPath, file);
+        const command = require(filePath);
+        if ('data' in command && 'execute' in command) {
+            commands.set(command.data.name, command);
+        }
+    }
+}
