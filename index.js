@@ -12,7 +12,7 @@ const client = new Client({
 });
 
 client.once('ready', () => {
-  console.log(`Bot olarak giriş yapıldı: ${client.user.tag}`);
+  console.log(`Bot aktiv olaraq qoşuldu: ${client.user.tag}`);
 });
 
 client.on('messageCreate', async message => {
