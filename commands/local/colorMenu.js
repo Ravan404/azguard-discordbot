@@ -8,10 +8,9 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 
     async execute(interaction) {
-        // Rəng rollarını oxuyuruq
         let rengRollari;
         try {
-            rengRollari = JSON.parse(fs.readFileSync('./rengroller.json', 'utf8'));
+            rengRollari = JSON.parse(fs.readFileSync('./colorRoles.json', 'utf8'));
         } catch {
             return interaction.reply({
                 content: '❌ Hələ heç bir rəng rolu təyin edilməyib! /rengayarla istifadə edin.',
@@ -24,7 +23,6 @@ module.exports = {
             .setDescription('Aşağıdakı düymələrə basaraq rəng seçə bilərsiniz.')
             .setColor('#ff0000');
 
-        // Təyin edilmiş rənglər üçün düymələr yaradırıq
         const buttons = new ActionRowBuilder();
 
         if (rengRollari.qirmizi) {
