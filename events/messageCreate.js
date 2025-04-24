@@ -1,11 +1,25 @@
 module.exports = {
-  name: 'messageCreate',
-  once: false,
-  async execute(message) {
-    // Əgər mesaj botdan gəlirsə, cavab vermə
-    if (message.author.bot) return;
+    name: 'interactionCreate',
+    async execute(interaction) {
+        // Slash komandaları üçün
+        if (interaction.isChatInputCommand()) {
+            const command = interaction.client.commands.get(interaction.commandName);
+            if (!command) return;
 
-    // Prefix əsaslı komandaları burada emal edə bilərsiniz
-    // Nümunə: if (message.content.startsWith('!')) { ... }
-  },
+            try {
+                await command.execute(interaction);
+            } catch (error) {
+                console.error(error);
+                await interaction.reply({ 
+                    content: 'Komanda icra edilərkən xəta baş verdi.', 
+                    ephemeral: true 
+                });
+            }
+        }
+
+        // Button qarşılıqlı əlaqələri üçün (əgər lazımdırsa)
+        if (interaction.isButton()) {
+            // Button məntiqini buraya əlavə edə bilərsiniz
+        }
+    }
 };
