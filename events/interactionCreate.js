@@ -1,34 +1,35 @@
 // events/interactionCreate.js
+const fs = require('fs');
+
 module.exports = {
     name: 'interactionCreate',
     async execute(interaction) {
         if (!interaction.isButton()) return;
 
-        // Rol ID'leri (bunları kendi sunucunuzdaki rol ID'leri ile değiştirin)
-        const roles = {
-            'kirmizi': '1364829561203982346',
-            'mavi': '1364829631076634685',
-            'yesil': '1364829678380122173',
-            'mor': '1364829725276766368'
-        };
+        let colorRoles;
+        try {
+            colorRoles = JSON.parse(fs.readFileSync('./colorRoles.json', 'utf8'));
+        } catch {
+            return interaction.reply({
+                content: '❌ Rəng rolları tapılmadı!',
+                ephemeral: true
+            });
+        }
 
-        // Butona tıklayan kullanıcı ve rol
-        const member = interaction.member;
-        const roleId = roles[interaction.customId];
-
+        const roleId = colorRoles[interaction.customId];
         if (!roleId) return;
 
+        const member = interaction.member;
+
         try {
-            // Eğer rol varsa kaldır, yoksa ekle
             if (member.roles.cache.has(roleId)) {
                 await member.roles.remove(roleId);
                 await interaction.reply({ 
-                    content: `✅ ${interaction.component.label} renk rolü kaldırıldı!`, 
+                    content: `✅ ${interaction.component.label} rəngi silindi!`, 
                     ephemeral: true 
                 });
             } else {
-                // Diğer renk rollerini kaldır
-                for (const otherRoleId of Object.values(roles)) {
+                for (const otherRoleId of Object.values(colorRoles)) {
                     if (member.roles.cache.has(otherRoleId)) {
                         await member.roles.remove(otherRoleId);
                     }
@@ -36,14 +37,14 @@ module.exports = {
                 
                 await member.roles.add(roleId);
                 await interaction.reply({ 
-                    content: `✅ ${interaction.component.label} renk rolü verildi!`, 
+                    content: `✅ ${interaction.component.label} rəngi verildi!`, 
                     ephemeral: true 
                 });
             }
         } catch (error) {
             console.error(error);
             await interaction.reply({ 
-                content: '❌ Rol verirken bir hata oluştu!', 
+                content: '❌ Rol verilərkən xəta baş verdi!', 
                 ephemeral: true 
             });
         }
