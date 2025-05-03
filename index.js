@@ -25,7 +25,7 @@ if (fs.existsSync(globalCommandsPath)) {
         const command = require(filePath);
         if ('data' in command && 'execute' in command) {
             client.commands.set(command.data.name, command);
-            console.log(`Global əmr(lər) yükləndi: ${command.data.name}`);
+            console.log(`Global əmr "${command.data.name}" yükləndi.`);
         }
     }
 }
@@ -39,7 +39,7 @@ if (fs.existsSync(localCommandsPath)) {
         const command = require(filePath);
         if ('data' in command && 'execute' in command) {
             client.commands.set(command.data.name, command);
-            console.log(`Local əmr(lər) yükləndi: ${command.data.name}`);
+            console.log(`Local əmr "${command.data.name}" yükləndi.`);
         }
     }
 }
