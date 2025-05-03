@@ -1,6 +1,0 @@
-your-bot-folder/
-├── commands/
-├── events/
-├── .env
-├── index.js
-└── package.json
