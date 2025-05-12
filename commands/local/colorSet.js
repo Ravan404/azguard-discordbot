@@ -15,10 +15,16 @@ module.exports = {
                 .setDescription('Rəng seçin')
                 .setRequired(true)
                 .addChoices(
-                    { name: 'Qırmızı', value: 'qirmizi' },
-                    { name: 'Mavi', value: 'mavi' },
-                    { name: 'Yaşıl', value: 'yasil' },
-                    { name: 'Bənövşəyi', value: 'benovsky' },
+                    { name: 'Səma Mavisi', value: 'sema mavisi' },
+                    { name: 'Açıq Çəhrayı', value: 'aciq cehrayi' },
+                    { name: 'Nanə Yaşılı', value: 'nane yasili' },
+                    { name: 'Lavanda', value: 'lavanda' },
+                    { name: 'Şaftalı', value: 'saftali' },
+                    { name: 'Qızılgül', value: 'qizilgul' },
+                    { name: 'Limon Sarısı', value: 'limon sarisi' },
+                    { name: 'Dəniz Yaşılı', value: 'deniz yasili' },
+                    { name: 'Bulud Ağı', value: 'bulud agi' },
+                    { name: 'Günbatan Narıncısı', value: 'gunebatan narincisi' },
                 )),
 
     async execute(interaction) {

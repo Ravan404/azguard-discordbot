@@ -28,32 +28,80 @@ module.exports = {
         if (rengRollari.qirmizi) {
             buttons.addComponents(
                 new ButtonBuilder()
-                    .setCustomId('qirmizi')
-                    .setLabel('Qırmızı')
+                    .setCustomId('sema mavisi')
+                    .setLabel('Səma Mavisi')
                     .setStyle(ButtonStyle.Danger)
             );
         }
         if (rengRollari.mavi) {
             buttons.addComponents(
                 new ButtonBuilder()
-                    .setCustomId('mavi')
-                    .setLabel('Mavi')
+                    .setCustomId('aciq cehrayi')
+                    .setLabel('Açıq Çəhrayı')
                     .setStyle(ButtonStyle.Primary)
             );
         }
         if (rengRollari.yasil) {
             buttons.addComponents(
                 new ButtonBuilder()
-                    .setCustomId('yasil')
-                    .setLabel('Yaşıl')
+                    .setCustomId('nane yasili')
+                    .setLabel('Nanə Yaşılı')
                     .setStyle(ButtonStyle.Success)
             );
         }
         if (rengRollari.benovsky) {
             buttons.addComponents(
                 new ButtonBuilder()
-                    .setCustomId('benovsky')
-                    .setLabel('Bənövşəyi')
+                    .setCustomId('lavanda')
+                    .setLabel('Lavanda')
+                    .setStyle(ButtonStyle.Secondary)
+            );
+        }
+        if (rengRollari.benovsky) {
+            buttons.addComponents(
+                new ButtonBuilder()
+                    .setCustomId('saftali')
+                    .setLabel('Şaftalı')
+                    .setStyle(ButtonStyle.Secondary)
+            );
+        }
+        if (rengRollari.qirmizi) {
+            buttons.addComponents(
+                new ButtonBuilder()
+                    .setCustomId('qizilgul')
+                    .setLabel('Qızılgül')
+                    .setStyle(ButtonStyle.Danger)
+            );
+        }
+        if (rengRollari.mavi) {
+            buttons.addComponents(
+                new ButtonBuilder()
+                    .setCustomId('limon sarisi')
+                    .setLabel('Limon Sarısı')
+                    .setStyle(ButtonStyle.Primary)
+            );
+        }
+        if (rengRollari.yasil) {
+            buttons.addComponents(
+                new ButtonBuilder()
+                    .setCustomId('deniz yasili')
+                    .setLabel('Dəniz Yaşılı')
+                    .setStyle(ButtonStyle.Success)
+            );
+        }
+        if (rengRollari.benovsky) {
+            buttons.addComponents(
+                new ButtonBuilder()
+                    .setCustomId('bulud agi')
+                    .setLabel('Bulud Ağı')
+                    .setStyle(ButtonStyle.Secondary)
+            );
+        }
+        if (rengRollari.benovsky) {
+            buttons.addComponents(
+                new ButtonBuilder()
+                    .setCustomId('gunebatan narincisi')
+                    .setLabel('Günbatan Narıncısı')
                     .setStyle(ButtonStyle.Secondary)
             );
         }
