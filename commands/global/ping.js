@@ -1,9 +1,10 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits} = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('ping')
-    .setDescription('Botun gecikmə müddətini yoxlayır'),
+      .setName('ping')
+      .setDescription('Botun gecikmə müddətini yoxlayır')
+      .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   async execute(interaction) {
     // Botun gecikmə müddətini hesablayırıq
     const sent = await interaction.reply({ content: 'Ping hesablanır...', fetchReply: true });
