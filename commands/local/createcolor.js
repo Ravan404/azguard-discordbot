@@ -1,59 +1,60 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
-const fs = require('fs');
+const { Client, GatewayIntentBits } = require('discord.js');
+require('dotenv').config();
+
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMembers
+    ]
+});
 
 const colors = [
-    { name: 'Səma Mavisi', hexCode: '#87CEEB', value: 'sema_mavisi' },
-    { name: 'Açıq Çəhrayı', hexCode: '#FFC0CB', value: 'aciq_cehrayi' },
-    { name: 'Nanə Yaşılı', hexCode: '#98FF98', value: 'nane_yasili' },
-    { name: 'Lavanda', hexCode: '#E6E6FA', value: 'lavanda' },
-    { name: 'Şaftalı', hexCode: '#FFDAB9', value: 'saftali' },
-    { name: 'Qızılgül', hexCode: '#FF007F', value: 'qizilgul' },
-    { name: 'Limon Sarısı', hexCode: '#FFF44F', value: 'limon_sarisi' },
-    { name: 'Dəniz Yaşılı', hexCode: '#9FE2BF', value: 'deniz_yasili' },
-    { name: 'Bulud Ağı', hexCode: '#F5F5F5', value: 'bulud_agi' },
-    { name: 'Günbatan Narıncı', hexCode: '#FF7E5F', value: 'gunbatan_narinci' }
+    { name: 'Səma Mavisi', color: '#87CEEB' },
+    { name: 'Açıq Çəhrayı', color: '#FFB6C1' },
+    { name: 'Nanə Yaşılı', color: '#98FF98' },
+    { name: 'Lavanda', color: '#E6E6FA' },
+    { name: 'Şaftalı', color: '#FFDAB9' },
+    { name: 'Qızılgül', color: '#FF69B4' },
+    { name: 'Limon Sarısı', color: '#FFFF00' },
+    { name: 'Dəniz Yaşılı', color: '#20B2AA' },
+    { name: 'Bulud Ağı', color: '#F0F8FF' },
+    { name: 'Günbatımı Narıncı', color: '#FFA07A' }
 ];
 
-module.exports = {
-    data: new SlashCommandBuilder()
-        .setName('createcolor')
-        .setDescription('Rəng rollarını yaradır')
-        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
-
-    async execute(interaction) {
-        const guild = interaction.guild;
-        let colorRoles = {};
-
-        await interaction.deferReply({ ephemeral: true });
-
-        try {
-            for (const [index, color] of colors.entries()) {
-                // Mövcud rol varsa yenilə, yoxdursa yenisini yarat
-                let role = guild.roles.cache.find(r => r.name === color.name);
-                if (!role) {
-                    role = await guild.roles.create({
-                        name: color.name,
-                        color: color.hexCode,
-                        reason: 'Rəng rolu yaradıldı'
-                    });
-                } else {
-                    await role.edit({
-                        color: color.hexCode
-                    });
-                }
-                colorRoles[color.value] = {
-                    id: role.id,
-                    number: index + 1
-                };
-            }
-
-            // Rolları JSON faylına yadda saxla
-            fs.writeFileSync('./colorRoles.json', JSON.stringify(colorRoles, null, 4));
-
-            await interaction.editReply('✅ Bütün rəng rolları uğurla yaradıldı!');
-        } catch (error) {
-            console.error(error);
-            await interaction.editReply('❌ Rollar yaradılarkən xəta baş verdi!');
+client.once('ready', async () => {
+    try {
+        // Botun olduğu ilk sunucuyu al
+        const guild = client.guilds.cache.first();
+        if (!guild) {
+            console.error('Server tapılmadı!');
+            return;
         }
-    },
-};
+
+        // Her renk için rol oluştur
+        for (const color of colors) {
+            // Rol var mı diye kontrol et
+            let role = guild.roles.cache.find(r => r.name === color.name);
+
+            // Rol yoksa oluştur
+            if (!role) {
+                role = await guild.roles.create({
+                    name: color.name,
+                    color: color.color,
+                    reason: 'Rəng rolu yaradıldı'
+                });
+                console.log(`${color.name} rolu yaradıldı`);
+            } else {
+                console.log(`${color.name} rolu artıq mövcuddur`);
+            }
+        }
+
+        console.log('Bütün rollar uğurla yaradıldı!');
+        process.exit();
+
+    } catch (error) {
+        console.error('Xəta baş verdi:', error);
+        process.exit(1);
+    }
+});
+
+client.login(process.env.TOKEN);
