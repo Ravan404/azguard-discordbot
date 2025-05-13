@@ -1,10 +1,8 @@
-// events/interactionCreate.js
 const fs = require('fs');
 
 module.exports = {
     name: 'interactionCreate',
     async execute(interaction) {
-        // Slash komandaları üçün
         if (interaction.isChatInputCommand()) {
             const command = interaction.client.commands.get(interaction.commandName);
             if (!command) return;
@@ -18,11 +16,7 @@ module.exports = {
                     ephemeral: true 
                 });
             }
-            return;
-        }
-
-        // Button interaksiyaları üçün
-        if (interaction.isButton()) {
+        } else if (interaction.isButton()) {
             let colorRoles;
             try {
                 colorRoles = JSON.parse(fs.readFileSync('./colorRoles.json', 'utf8'));
@@ -33,30 +27,30 @@ module.exports = {
                 });
             }
 
-            const roleId = colorRoles[interaction.customId];
-            if (!roleId) return;
+            const roleInfo = colorRoles[interaction.customId];
+            if (!roleInfo) return;
 
             const member = interaction.member;
+            const roleId = roleInfo.id;
 
             try {
                 if (member.roles.cache.has(roleId)) {
                     await member.roles.remove(roleId);
                     await interaction.reply({ 
-                        content: `✅ ${interaction.component.label} rəngi silindi!`, 
+                        content: `✅ ${interaction.customId.replace(/_/g, ' ')} rəngi silindi!`, 
                         ephemeral: true 
                     });
                 } else {
-                    // Digər rəng rollarını sil
-                    for (const otherRoleId of Object.values(colorRoles)) {
-                        if (member.roles.cache.has(otherRoleId)) {
-                            await member.roles.remove(otherRoleId);
+                    // Diğer renk rollerini kaldır
+                    for (const [, value] of Object.entries(colorRoles)) {
+                        if (member.roles.cache.has(value.id)) {
+                            await member.roles.remove(value.id);
                         }
                     }
                     
-                    // Yeni rəng rolunu əlavə et
                     await member.roles.add(roleId);
                     await interaction.reply({ 
-                        content: `✅ ${interaction.component.label} rəngi verildi!`, 
+                        content: `✅ ${interaction.customId.replace(/_/g, ' ')} rəngi verildi!`, 
                         ephemeral: true 
                     });
                 }
