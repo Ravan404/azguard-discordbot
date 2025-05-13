@@ -17,29 +17,29 @@ module.exports = {
             const rightColors = entries.slice(5, 10);
 
             // Rəng listesini iki sütun olarak hazırla
-            let colorList = '# Sol Sütun:\n';
+            let leftList = '';
             leftColors.forEach(([key, value]) => {
                 const colorName = key.replace(/_/g, ' ').split(' ')
                     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                     .join(' ');
-                colorList += `### ${value.number}. ${colorName}\n`;
+                leftList += `${value.number}. ${colorName}\n`;
             });
 
-            colorList += '\n# Sağ Sütun:\n';
+            let rightList = '';
             rightColors.forEach(([key, value]) => {
                 const colorName = key.replace(/_/g, ' ').split(' ')
                     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                     .join(' ');
-                colorList += `### ${value.number}. ${colorName}\n`;
+                rightList += `${value.number}. ${colorName}\n`;
             });
 
             const embed = new EmbedBuilder()
                 .setTitle('🎨 Rəng Seçimi')
                 .setDescription('Aşağıdaki düymələrdən özünüzə rəng seçə bilərsiniz!')
-                .addFields({ 
-                    name: 'Mövcud Rənglər:', 
-                    value: colorList 
-                })
+                .addFields(
+                    { name: 'Sol Sütun', value: leftList, inline: true },
+                    { name: 'Sağ Sütun', value: rightList, inline: true }
+                )
                 .setColor('#ff00ff')
                 .setTimestamp();
 
