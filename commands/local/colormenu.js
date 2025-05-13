@@ -10,15 +10,29 @@ module.exports = {
     async execute(interaction) {
         try {
             const colorRoles = JSON.parse(fs.readFileSync('./colorRoles.json', 'utf8'));
+            const entries = Object.entries(colorRoles);
+            
+            // Sol ve sağ sütunlar için renkleri böl
+            const leftColors = entries.slice(0, 5);
+            const rightColors = entries.slice(5, 10);
 
-            // Rəng adlarını və nömrələrini embed üçün hazırla
-            let colorList = '';
-            for (const [key, value] of Object.entries(colorRoles)) {
+            // Rəng listesini iki sütun olarak hazırla
+            let colorList = '# Sol Sütun:\n';
+            leftColors.forEach(([key, value]) => {
                 const colorName = key.replace(/_/g, ' ').split(' ')
                     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                     .join(' ');
-                colorList += `${value.number}. ${colorName}\n`;
-            }
+                colorList += `### ${value.number}. ${colorName}\n`;
+            });
+
+            colorList += '\n# Sağ Sütun:\n';
+            rightColors.forEach(([key, value]) => {
+                const colorName = key.replace(/_/g, ' ').split(' ')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(' ');
+                colorList += `### ${value.number}. ${colorName}\n`;
+            });
+
             const embed = new EmbedBuilder()
                 .setTitle('🎨 Rəng Seçimi')
                 .setDescription('Aşağıdaki düymələrdən özünüzə rəng seçə bilərsiniz!')
@@ -29,32 +43,33 @@ module.exports = {
                 .setColor('#ff00ff')
                 .setTimestamp();
 
-            // Butonları hazırla
-            const rows = [];
-            let currentRow = [];
-            for (const [key, value] of Object.entries(colorRoles)) {
-                const button = new ButtonBuilder()
-                    .setCustomId(key)
-                    .setLabel(`Rəng ${value.number}`)
-                    .setStyle(ButtonStyle.Primary)
-                    .setEmoji('🎨');
+            // Sol sütun butonları
+            const leftRow = new ActionRowBuilder();
+            leftColors.forEach(([key, value]) => {
+                leftRow.addComponents(
+                    new ButtonBuilder()
+                        .setCustomId(key)
+                        .setLabel(`Rəng ${value.number}`)
+                        .setStyle(ButtonStyle.Primary)
+                        .setEmoji('🎨')
+                );
+            });
 
-                currentRow.push(button);
-
-                // Hər 5 buttondan sonra yeni sətir yarat
-                if (currentRow.length === 5) {
-                    rows.push(new ActionRowBuilder().addComponents(currentRow));
-                    currentRow = [];
-                }
-            }
-            // Son sətirdəki buttonları əlavə et (əgər varsa)
-            if (currentRow.length > 0) {
-                rows.push(new ActionRowBuilder().addComponents(currentRow));
-            }
+            // Sağ sütun butonları
+            const rightRow = new ActionRowBuilder();
+            rightColors.forEach(([key, value]) => {
+                rightRow.addComponents(
+                    new ButtonBuilder()
+                        .setCustomId(key)
+                        .setLabel(`Rəng ${value.number}`)
+                        .setStyle(ButtonStyle.Primary)
+                        .setEmoji('🎨')
+                );
+            });
 
             await interaction.reply({
                 embeds: [embed],
-                components: rows,
+                components: [leftRow, rightRow],
                 ephemeral: false
             });
 
