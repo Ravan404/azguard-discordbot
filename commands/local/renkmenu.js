@@ -25,22 +25,37 @@ module.exports = {
 
             console.log('Embed başarıyla oluşturuldu.'); // Debug mesajı
 
-            const row = new ActionRowBuilder();
-            colors.forEach(color => {
-                row.addComponents(
+            // İlk satır (0-4 arası butonlar - ilk 5 buton)
+            const firstRow = new ActionRowBuilder();
+            for (let i = 0; i < 4; i++) {
+                if (i < colors.length) {
+                    firstRow.addComponents(
+                        new ButtonBuilder()
+                            .setCustomId(colors[i].id)
+                            .setLabel(colors[i].name)
+                            .setStyle(ButtonStyle.Primary)
+                            .setEmoji('🎨')
+                    );
+                }
+            }
+
+            // İkinci satır (4-8 arası butonlar - sonraki 4 buton)
+            const secondRow = new ActionRowBuilder();
+            for (let i = 4; i < colors.length; i++) {
+                secondRow.addComponents(
                     new ButtonBuilder()
-                        .setCustomId(color.id)
-                        .setLabel(color.name)
+                        .setCustomId(colors[i].id)
+                        .setLabel(colors[i].name)
                         .setStyle(ButtonStyle.Primary)
                         .setEmoji('🎨')
                 );
-            });
+            }
 
             console.log('Butonlar başarıyla oluşturuldu.'); // Debug mesajı
 
             await interaction.reply({
                 embeds: [embed],
-                components: [row],
+                components: [firstRow, secondRow], // İki satır olarak gönder
                 ephemeral: true
             });
 
