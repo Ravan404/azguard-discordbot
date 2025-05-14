@@ -16,14 +16,16 @@ module.exports = {
         .setName('renkmenu')
         .setDescription('Rəng menyusunu göstərir.'),
     async execute(interaction) {
+        console.log('Komut çalıştırılıyor: renkmenu'); // Debug mesajı
         try {
             const embed = new EmbedBuilder()
                 .setTitle('🎨 Rəng Menyusu')
                 .setDescription('Aşağıdakı düymələrə basaraq istədiyiniz rəngi seçə bilərsiniz:')
                 .setColor('#ffffff');
 
-            const row = new ActionRowBuilder();
+            console.log('Embed başarıyla oluşturuldu.'); // Debug mesajı
 
+            const row = new ActionRowBuilder();
             colors.forEach(color => {
                 row.addComponents(
                     new ButtonBuilder()
@@ -34,13 +36,17 @@ module.exports = {
                 );
             });
 
+            console.log('Butonlar başarıyla oluşturuldu.'); // Debug mesajı
+
             await interaction.reply({
                 embeds: [embed],
                 components: [row],
                 ephemeral: true
             });
+
+            console.log('Interaction başarıyla yanıtlandı.'); // Debug mesajı
         } catch (error) {
-            console.error('Xəta baş verdi:', error);
+            console.error('Hata meydana geldi:', error); // Hatanın detayını yazdır
             await interaction.reply({
                 content: '❌ Rəng menyusu yüklənərkən xəta baş verdi.',
                 ephemeral: true
