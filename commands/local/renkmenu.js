@@ -17,7 +17,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('renkmenu')
         .setDescription('Rəng menyusunu göstərir.')
-        .setDefaultMemberPermissions(PermissionFlagsBits.ManageRoles),
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
     async execute(interaction) {
         try {
             // Rolları yoxla və yarat
