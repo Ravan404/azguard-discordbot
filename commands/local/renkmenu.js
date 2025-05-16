@@ -4,7 +4,7 @@ const colors = [
     { name: 'Səma Mavisi', id: 'sema-mavisi', colorCode: '#87ceeb' },
     { name: 'Açıq Çəhrayı', id: 'aciq-cehrayi', colorCode: '#ffc0cb' },
     { name: 'Nanə Yaşılı', id: 'nane-yasili', colorCode: '#98ff98' },
-    { name: 'Bənövşəyi', id: 'benovseyi', colorCode: '#800080' }, // Lavanda yerine mor renk
+    { name: 'Bənövşəyi', id: 'benovseyi', colorCode: '#800080' },
     { name: 'Şaftalı', id: 'saftali', colorCode: '#ffdab9' },
     { name: 'Qızılgül', id: 'qizilgul', colorCode: '#ff007f' },
     { name: 'Limon Sarısı', id: 'limon-sarisi', colorCode: '#fff44f' },

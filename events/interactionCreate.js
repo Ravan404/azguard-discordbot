@@ -5,7 +5,7 @@ module.exports = {
             await interaction.deferReply({ ephemeral: true });
             
             const colorButtons = [
-                'sema-mavisi', 'aciq-cehrayi', 'nane-yasili', 'lavanda',
+                'sema-mavisi', 'aciq-cehrayi', 'nane-yasili', 'benovseyi', // 'lavanda' yerine 'benovseyi'
                 'saftali', 'qizilgul', 'limon-sarisi', 'deniz-yasili',
                 'bulud-agi', 'gunbatan-narinci'
             ];
@@ -25,9 +25,14 @@ module.exports = {
                         'gunbatan-narinci': 'Günbatan Narıncı'
                     };
 
+                    console.log('Seçilen renk ID:', interaction.customId);
+                    console.log('Aranacak rol adı:', colorNames[interaction.customId]);
+
                     const selectedRole = interaction.guild.roles.cache.find(
                         role => role.name === colorNames[interaction.customId]
                     );
+
+                    console.log('Bulunan rol:', selectedRole ? selectedRole.name : 'Rol bulunamadı');
 
                     if (!selectedRole) {
                         return await interaction.editReply({
@@ -38,6 +43,7 @@ module.exports = {
                     const member = interaction.member;
                     const colorRoles = Object.values(colorNames);
                     
+                    // Mevcut renk rollerini kaldır
                     for (const roleName of colorRoles) {
                         const role = interaction.guild.roles.cache.find(r => r.name === roleName);
                         if (role && member.roles.cache.has(role.id)) {
@@ -45,6 +51,7 @@ module.exports = {
                         }
                     }
 
+                    // Yeni rolü ekle
                     await member.roles.add(selectedRole);
                     
                     await interaction.editReply({
