@@ -48,8 +48,7 @@ module.exports = {
         
         return description;
     })()}`)
-                .setColor('#2b2d31')
-                .setTimestamp();
+                .setColor('#2b2d31');
 
             const firstRow = new ActionRowBuilder();
             for (let i = 0; i < 5; i++) {
