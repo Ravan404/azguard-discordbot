@@ -15,7 +15,7 @@ const colors = [
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('renkmenu')
+        .setName('rengmenu')
         .setDescription('Rəng menyusunu göstərir.')
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
     async execute(interaction) {
