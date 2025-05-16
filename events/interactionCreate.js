@@ -3,26 +3,29 @@ module.exports = {
     async execute(interaction) {
         if (interaction.isButton()) {
             const colorButtons = [
-                'sari', 'benovseyi', 'mavi', 'cehrayi', 
-                'yasil', 'narinci', 'boz', 'qara'
+                'sema-mavisi', 'aciq-cehrayi', 'nane-yasili', 'lavanda',
+                'saftali', 'qizilgul', 'limon-sarisi', 'deniz-yasili',
+                'bulud-agi', 'gunbatan-narinci'
             ];
             
             if (colorButtons.includes(interaction.customId)) {
                 try {
                     const colorNames = {
-                        'sari': 'Sarı',
-                        'benovseyi': 'Bənövşəyi',
-                        'mavi': 'Mavi',
-                        'cehrayi': 'Çəhrayı',
-                        'yasil': 'Yaşıl',
-                        'narinci': 'Narıncı',
-                        'boz': 'Boz',
-                        'qara': 'Qara'
+                        'sema-mavisi': 'Səma Mavisi',
+                        'aciq-cehrayi': 'Açıq Çəhrayı',
+                        'nane-yasili': 'Nanə Yaşılı',
+                        'lavanda': 'Lavanda',
+                        'saftali': 'Şaftalı',
+                        'qizilgul': 'Qızılgül',
+                        'limon-sarisi': 'Limon Sarısı',
+                        'deniz-yasili': 'Dəniz Yaşılı',
+                        'bulud-agi': 'Bulud Ağı',
+                        'gunbatan-narinci': 'Günbatan Narıncı'
                     };
-
                     const selectedRole = interaction.guild.roles.cache.find(
                         role => role.name === colorNames[interaction.customId]
                     );
+
                     if (!selectedRole) {
                         return await interaction.reply({
                             content: '❌ Seçilen rəng rolü tapılmadı.',

@@ -1,14 +1,16 @@
 const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 
 const colors = [
-    { name: 'Sarı', id: 'sari', colorCode: '#FFFF00' },
-    { name: 'Bənövşəyi', id: 'benovseyi', colorCode: '#800080' },
-    { name: 'Mavi', id: 'mavi', colorCode: '#0000FF' },
-    { name: 'Çəhrayı', id: 'cehrayi', colorCode: '#FFC0CB' },
-    { name: 'Yaşıl', id: 'yasil', colorCode: '#008000' },
-    { name: 'Narıncı', id: 'narinci', colorCode: '#FFA500' },
-    { name: 'Boz', id: 'boz', colorCode: '#808080' },
-    { name: 'Qara', id: 'qara', colorCode: '#000000' }
+    { name: 'Səma Mavisi', id: 'sema-mavisi', colorCode: '#87ceeb' },
+    { name: 'Açıq Çəhrayı', id: 'aciq-cehrayi', colorCode: '#ffc0cb' },
+    { name: 'Nanə Yaşılı', id: 'nane-yasili', colorCode: '#98ff98' },
+    { name: 'Lavanda', id: 'lavanda', colorCode: '#e6e6fa' },
+    { name: 'Şaftalı', id: 'saftali', colorCode: '#ffdab9' },
+    { name: 'Qızılgül', id: 'qizilgul', colorCode: '#ff007f' },
+    { name: 'Limon Sarısı', id: 'limon-sarisi', colorCode: '#fff44f' },
+    { name: 'Dəniz Yaşılı', id: 'deniz-yasili', colorCode: '#9fe2bf' },
+    { name: 'Bulud Ağı', id: 'bulud-agi', colorCode: '#f5f5f5' },
+    { name: 'Günbatan Narıncı', id: 'gunbatan-narinci', colorCode: '#ff7e5f' }
 ];
 
 module.exports = {
@@ -38,21 +40,21 @@ module.exports = {
                 .setDescription('Aşağıdakı düymələrə basaraq istədiyiniz rəngi seçə bilərsiniz:')
                 .setColor('#ffffff');
 
+            // İlk sıra (5 buton)
             const firstRow = new ActionRowBuilder();
-            for (let i = 0; i < 4; i++) {
-                if (i < colors.length) {
-                    firstRow.addComponents(
-                        new ButtonBuilder()
-                            .setCustomId(colors[i].id)
-                            .setLabel(colors[i].name)
-                            .setStyle(ButtonStyle.Primary)
-                            .setEmoji('🎨')
-                    );
-                }
+            for (let i = 0; i < 5; i++) {
+                firstRow.addComponents(
+                    new ButtonBuilder()
+                        .setCustomId(colors[i].id)
+                        .setLabel(colors[i].name)
+                        .setStyle(ButtonStyle.Primary)
+                        .setEmoji('🎨')
+                );
             }
 
+            // İkinci sıra (5 buton)
             const secondRow = new ActionRowBuilder();
-            for (let i = 4; i < colors.length; i++) {
+            for (let i = 5; i < 10; i++) {
                 secondRow.addComponents(
                     new ButtonBuilder()
                         .setCustomId(colors[i].id)
