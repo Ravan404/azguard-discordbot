@@ -34,9 +34,10 @@ module.exports = {
             }
 
             const embed = new EmbedBuilder()
-                .setTitle('🎨 Rəng Menyusu')
-                .setDescription('Aşağıdakı düymələrə basaraq istədiyiniz rəngi seçə bilərsiniz:')
-                .setColor('#ffffff');
+                .setTitle('Rəng Seçimi')
+                .setDescription(`Aşağıdakı düymələrə basaraq istədiyiniz rəngi seçə bilərsiniz:\n\n${colors.map(color => `${color.name} (${color.colorCode}) - <@&${interaction.guild.roles.cache.find(role => role.name === color.name)?.id}>`).join('\n')}`)
+                .setColor('#2b2d31')
+                .setTimestamp();
 
             const firstRow = new ActionRowBuilder();
             for (let i = 0; i < 5; i++) {
