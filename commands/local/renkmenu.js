@@ -42,7 +42,7 @@ module.exports = {
         
         for(let i = 0; i < 5; i++) {
             const leftRole = firstHalf[i] ? `### <@&${interaction.guild.roles.cache.find(role => role.name === firstHalf[i].name)?.id}>` : '';
-            const rightRole = secondHalf[i] ? `### <@&${interaction.guild.roles.cache.find(role => role.name === secondHalf[i].name)?.id}>` : '';
+            const rightRole = secondHalf[i] ? `<@&${interaction.guild.roles.cache.find(role => role.name === secondHalf[i].name)?.id}>` : '';
             description += `${leftRole}    ⠀⠀⠀⠀${rightRole}\n`;
         }
         
