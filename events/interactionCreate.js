@@ -16,7 +16,7 @@ module.exports = {
                         'sema-mavisi': 'Səma Mavisi',
                         'aciq-cehrayi': 'Açıq Çəhrayı',
                         'nane-yasili': 'Nanə Yaşılı',
-                        'lavanda': 'Lavanda',
+                        'benovseyi': 'Bənövşəyi',
                         'saftali': 'Şaftalı',
                         'qizilgul': 'Qızılgül',
                         'limon-sarisi': 'Limon Sarısı',
