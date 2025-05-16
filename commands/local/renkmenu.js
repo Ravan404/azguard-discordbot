@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, PermissionFlagsBits } = require('discord.js');
 
 const colors = [
     { name: 'Sarı', id: 'sari', colorCode: '#FFFF00' },
@@ -14,10 +14,25 @@ const colors = [
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('renkmenu')
-        .setDescription('Rəng menyusunu göstərir.'),
+        .setDescription('Rəng menyusunu göstərir.')
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageRoles),
     async execute(interaction) {
-        console.log('Komut çalıştırılıyor: renkmenu');
         try {
+            // Önce rolleri oluştur
+            for (const color of colors) {
+                // Rol var mı diye kontrol et
+                let role = interaction.guild.roles.cache.find(r => r.name === color.name);
+                
+                // Rol yoksa oluştur
+                if (!role) {
+                    role = await interaction.guild.roles.create({
+                        name: color.name,
+                        color: color.colorCode,
+                        reason: 'Renk rolü oluşturuldu'
+                    });
+                }
+            }
+
             const embed = new EmbedBuilder()
                 .setTitle('🎨 Rəng Menyusu')
                 .setDescription('Aşağıdakı düymələrə basaraq istədiyiniz rəngi seçə bilərsiniz:')

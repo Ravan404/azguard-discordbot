@@ -1,13 +1,7 @@
 module.exports = {
     name: 'interactionCreate',
     async execute(interaction) {
-        console.log('interactionCreate tetiklendi.'); // Debug
-
-        // Buton interaction'ı varsa işleme
         if (interaction.isButton()) {
-            console.log(`Buton tıklandı: ${interaction.customId}`); // Debug
-            
-            // Renk butonlarını kontrol etme
             const colorButtons = [
                 'sari', 'benovseyi', 'mavi', 'cehrayi', 
                 'yasil', 'narinci', 'boz', 'qara'
@@ -25,9 +19,29 @@ module.exports = {
                         'boz': 'Boz',
                         'qara': 'Qara'
                     };
+
+                    const selectedRole = interaction.guild.roles.cache.find(
+                        role => role.name === colorNames[interaction.customId]
+                    );
+                    if (!selectedRole) {
+                        return await interaction.reply({
+                            content: '❌ Seçilen rəng rolü tapılmadı.',
+                            ephemeral: true
+                        });
+                    }
+
+                    const member = interaction.member;
+                    const colorRoles = Object.values(colorNames);
                     
-                    // Rol işlemleri buraya gelecek
-                    // Örnek cevap:
+                    for (const roleName of colorRoles) {
+                        const role = interaction.guild.roles.cache.find(r => r.name === roleName);
+                        if (role && member.roles.cache.has(role.id)) {
+                            await member.roles.remove(role);
+                        }
+                    }
+
+                    await member.roles.add(selectedRole);
+                    
                     await interaction.reply({
                         content: `✅ **${colorNames[interaction.customId]}** rəngi seçildi!`,
                         ephemeral: true
@@ -40,24 +54,21 @@ module.exports = {
                     });
                 }
             }
-            return; // Buton işleminden sonra çıkıyoruz
-        }
-
-        // Slash komutları işleme
-        if (!interaction.isChatInputCommand()) {
-            console.log('ChatInputCommand (slash komutu) değil.'); // Debug
             return;
         }
+
+        if (!interaction.isChatInputCommand()) return;
 
         const command = interaction.client.commands.get(interaction.commandName);
 
         if (!command) {
-            console.error(`${interaction.commandName} adında bir komut bulunamadı.`);
-            return interaction.reply({ content: 'Komut bulunamadı!', ephemeral: true });
+            return interaction.reply({ 
+                content: 'Komut bulunamadı!', 
+                ephemeral: true 
+            });
         }
 
         try {
-            console.log(`Komut çalıştırılıyor: ${interaction.commandName}`); // Debug
             await command.execute(interaction);
         } catch (error) {
             console.error('Komut çalıştırılırken bir hata oluştu:', error);
