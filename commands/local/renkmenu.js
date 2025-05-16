@@ -20,17 +20,15 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageRoles),
     async execute(interaction) {
         try {
-            // Önce rolleri oluştur
+            // Rolları yoxla və yarat
             for (const color of colors) {
-                // Rol var mı diye kontrol et
                 let role = interaction.guild.roles.cache.find(r => r.name === color.name);
                 
-                // Rol yoksa oluştur
                 if (!role) {
                     role = await interaction.guild.roles.create({
                         name: color.name,
                         color: color.colorCode,
-                        reason: 'Renk rolü oluşturuldu'
+                        reason: 'Rəng rolu yaradıldı'
                     });
                 }
             }
@@ -40,7 +38,6 @@ module.exports = {
                 .setDescription('Aşağıdakı düymələrə basaraq istədiyiniz rəngi seçə bilərsiniz:')
                 .setColor('#ffffff');
 
-            // İlk sıra (5 buton)
             const firstRow = new ActionRowBuilder();
             for (let i = 0; i < 5; i++) {
                 firstRow.addComponents(
@@ -52,7 +49,6 @@ module.exports = {
                 );
             }
 
-            // İkinci sıra (5 buton)
             const secondRow = new ActionRowBuilder();
             for (let i = 5; i < 10; i++) {
                 secondRow.addComponents(
@@ -70,7 +66,7 @@ module.exports = {
             });
 
         } catch (error) {
-            console.error('Hata meydana geldi:', error);
+            console.error('Xəta baş verdi:', error);
             await interaction.reply({
                 content: '❌ Rəng menyusu yüklənərkən xəta baş verdi.',
                 ephemeral: true
