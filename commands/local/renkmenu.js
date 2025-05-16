@@ -35,7 +35,7 @@ module.exports = {
 
             const embed = new EmbedBuilder()
                 .setTitle('Rəng Seçimi')
-                .setDescription(`Aşağıdakı düymələrə basaraq istədiyiniz rəngi seçə bilərsiniz:\n\n${colors.map(color => `${color.name} (${color.colorCode}) - <@&${interaction.guild.roles.cache.find(role => role.name === color.name)?.id}>`).join('\n')}`)
+                .setDescription(`# Aşağıdakı düymələrə basaraq istədiyiniz rəngi seçə bilərsiniz:\n\n${colors.map(color => `# <@&${interaction.guild.roles.cache.find(role => role.name === color.name)?.id}>`).join('\n')}`)
                 .setColor('#2b2d31')
                 .setTimestamp();
 
