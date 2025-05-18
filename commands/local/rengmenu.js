@@ -44,23 +44,22 @@ module.exports = {
                         const leftRole = firstHalf[i] ? `### <@&${interaction.guild.roles.cache.find(role => role.name === firstHalf[i].name)?.id}>` : '';
                         const rightRole = secondHalf[i] ? `<@&${interaction.guild.roles.cache.find(role => role.name === secondHalf[i].name)?.id}>` : '';
                         
-                        // Her satır için farklı miktarda boşluk
                         let spacing;
                         switch(i) {
                             case 0:
-                                spacing = ' ⠀⠀                  ⠀⠀'; // 4 normal + 4 görünmez boşluk
+                                spacing = '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀';
                                 break;
                             case 1:
-                                spacing = '    ⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀'; // 4 normal + 6 görünmez boşluk
+                                spacing = '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀';
                                 break;
                             case 2:
-                                spacing = ' ⠀⠀                            '; // 4 normal + 2 görünmez boşluk
+                                spacing = '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀';
                                 break;
                             case 3:
-                                spacing = '⠀⠀⠀⠀⠀⠀          ⠀⠀'; // 4 normal + 8 görünmez boşluk
+                                spacing = '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀';
                                 break;
                             case 4:
-                                spacing = '                                       ⠀'; // 4 normal + 1 görünmez boşluk
+                                spacing = '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀';
                                 break;
                         }
                         
