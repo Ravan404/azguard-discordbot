@@ -48,19 +48,19 @@ module.exports = {
                         let spacing;
                         switch(i) {
                             case 0:
-                                spacing = '    ⠀⠀⠀⠀'; // 4 normal + 4 görünmez boşluk
+                                spacing = ' ⠀⠀                  ⠀⠀'; // 4 normal + 4 görünmez boşluk
                                 break;
                             case 1:
-                                spacing = '    ⠀⠀⠀⠀⠀⠀'; // 4 normal + 6 görünmez boşluk
+                                spacing = '    ⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀'; // 4 normal + 6 görünmez boşluk
                                 break;
                             case 2:
-                                spacing = '    ⠀⠀'; // 4 normal + 2 görünmez boşluk
+                                spacing = ' ⠀⠀                            '; // 4 normal + 2 görünmez boşluk
                                 break;
                             case 3:
-                                spacing = '    ⠀⠀⠀⠀⠀⠀⠀⠀'; // 4 normal + 8 görünmez boşluk
+                                spacing = '⠀⠀⠀⠀⠀⠀          ⠀⠀'; // 4 normal + 8 görünmez boşluk
                                 break;
                             case 4:
-                                spacing = '    ⠀'; // 4 normal + 1 görünmez boşluk
+                                spacing = '                                       ⠀'; // 4 normal + 1 görünmez boşluk
                                 break;
                         }
                         
