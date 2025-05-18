@@ -37,11 +37,11 @@ module.exports = {
                 .setTitle('Rəng Seçimi')
                 .setDescription('Aşağıdakı düymələrə basaraq istədiyiniz rəngi seçə bilərsiniz:')
                 .addFields(
-                    ...colors.map(color => ({
-                        name: color.name,
-                        value: `<@&${interaction.guild.roles.cache.find(role => role.name === color.name)?.id}>`,
-                        inline: true
-                    }))
+                    { name: '\u200B', value: colors.slice(0, 5).map(color => 
+                        `<@&${interaction.guild.roles.cache.find(role => role.name === color.name)?.id}>`).join('\n'), inline: true },
+                    { name: '\u200B', value: '\u200B', inline: true },
+                    { name: '\u200B', value: colors.slice(5, 10).map(color => 
+                        `<@&${interaction.guild.roles.cache.find(role => role.name === color.name)?.id}>`).join('\n'), inline: true }
                 )
                 .setColor('#2b2d31');
 
