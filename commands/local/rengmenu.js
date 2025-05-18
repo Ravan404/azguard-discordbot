@@ -35,19 +35,14 @@ module.exports = {
 
             const embed = new EmbedBuilder()
                 .setTitle('Rəng Seçimi')
-                .setDescription(`# Aşağıdakı düymələrə basaraq istədiyiniz rəngi seçə bilərsiniz:\n\n${(() => {
-        const firstHalf = colors.slice(0, 5);
-        const secondHalf = colors.slice(5, 10);
-        let description = '';
-        
-        for(let i = 0; i < 5; i++) {
-            const leftRole = firstHalf[i] ? `### <@&${interaction.guild.roles.cache.find(role => role.name === firstHalf[i].name)?.id}>` : '';
-            const rightRole = secondHalf[i] ? `<@&${interaction.guild.roles.cache.find(role => role.name === secondHalf[i].name)?.id}>` : '';
-            description += `${leftRole}    ⠀⠀⠀⠀${rightRole}\n`;
-        }
-        
-        return description;
-    })()}`)
+                .setDescription('# Aşağıdakı düymələrə basaraq istədiyiniz rəngi seçə bilərsiniz:')
+                .addFields(
+                    { name: 'Sütun 1', value: colors.slice(0, 5).map(color => 
+                        `<@&${interaction.guild.roles.cache.find(role => role.name === color.name)?.id}>`).join('\n'), inline: true },
+                    { name: '\u200B', value: '\u200B', inline: true }, // Boş ayırıcı sütun
+                    { name: 'Sütun 2', value: colors.slice(5, 10).map(color => 
+                        `<@&${interaction.guild.roles.cache.find(role => role.name === color.name)?.id}>`).join('\n'), inline: true }
+                )
                 .setColor('#2b2d31');
 
             const firstRow = new ActionRowBuilder();
