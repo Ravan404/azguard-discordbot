@@ -38,10 +38,10 @@ module.exports = {
                 .setDescription('### Aşağıdakı düymələrə basaraq istədiyiniz rəngi seçə bilərsiniz:')
                 .addFields(
                     { name: '\u200B', value: colors.slice(0, 5).map(color => 
-                        `<@&${interaction.guild.roles.cache.find(role => role.name === color.name)?.id}>`).join('\n\n\n'), inline: true },
-                    { name: '\u200B', value: '\u200B', inline: true },
+                        `<@&${interaction.guild.roles.cache.find(role => role.name === color.name)?.id}>`).join('\n\n'), inline: true },
+                    { name: '\u200B', value: '\n\n\n\n\n', inline: true },
                     { name: '\u200B', value: colors.slice(5, 10).map(color => 
-                        `<@&${interaction.guild.roles.cache.find(role => role.name === color.name)?.id}>`).join('\n\n\n'), inline: true }
+                        `<@&${interaction.guild.roles.cache.find(role => role.name === color.name)?.id}>`).join('\n\n'), inline: true }
                 )
                 .setColor('#2b2d31');
 
