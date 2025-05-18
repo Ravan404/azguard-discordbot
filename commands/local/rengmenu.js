@@ -39,7 +39,7 @@ module.exports = {
                 .addFields(
                     { name: '\u200B', value: colors.slice(0, 5).map(color => 
                         `<@&${interaction.guild.roles.cache.find(role => role.name === color.name)?.id}>`).join('\n\n'), inline: true },
-                    { name: '\u200B', value: '\n\n\n\n\n', inline: true },
+                    { name: '\u200B', value: '\u200B', inline: true },
                     { name: '\u200B', value: colors.slice(5, 10).map(color => 
                         `<@&${interaction.guild.roles.cache.find(role => role.name === color.name)?.id}>`).join('\n\n'), inline: true }
                 )
