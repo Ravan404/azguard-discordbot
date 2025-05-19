@@ -5,9 +5,9 @@ module.exports = {
             await interaction.deferReply({ ephemeral: true });
             
             const colorButtons = [
-                'sema-mavisi', 'aciq-cehrayi', 'nane-yasili', 'benovseyi', // 'lavanda' yerine 'benovseyi'
+                'sema-mavisi', 'aciq-cehrayi', 'nane-yasili', 'benovseyi',
                 'saftali', 'qizilgul', 'limon-sarisi', 'deniz-yasili',
-                'bulud-agi', 'gunbatan-narinci'
+                'bulud-agi', 'albali'
             ];
             
             if (colorButtons.includes(interaction.customId)) {
@@ -22,17 +22,17 @@ module.exports = {
                         'limon-sarisi': 'Limon Sarısı',
                         'deniz-yasili': 'Dəniz Yaşılı',
                         'bulud-agi': 'Bulud Ağı',
-                        'gunbatan-narinci': 'Günbatan Narıncı'
+                        'albali': 'Albalı'
                     };
 
-                    console.log('Seçilen renk ID:', interaction.customId);
-                    console.log('Aranacak rol adı:', colorNames[interaction.customId]);
+                    console.log('Seçilmiş rəng ID:', interaction.customId);
+                    console.log('Axtarılan rol adı:', colorNames[interaction.customId]);
 
                     const selectedRole = interaction.guild.roles.cache.find(
                         role => role.name === colorNames[interaction.customId]
                     );
 
-                    console.log('Bulunan rol:', selectedRole ? selectedRole.name : 'Rol bulunamadı');
+                    console.log('Tapılan rol:', selectedRole ? selectedRole.name : 'Rol tapılmadı');
 
                     if (!selectedRole) {
                         return await interaction.editReply({
@@ -43,7 +43,7 @@ module.exports = {
                     const member = interaction.member;
                     const colorRoles = Object.values(colorNames);
                     
-                    // Mevcut renk rollerini kaldır
+                    // Mövcud rəng rollarını sil
                     for (const roleName of colorRoles) {
                         const role = interaction.guild.roles.cache.find(r => r.name === roleName);
                         if (role && member.roles.cache.has(role.id)) {
@@ -51,7 +51,7 @@ module.exports = {
                         }
                     }
 
-                    // Yeni rolü ekle
+                    // Yeni rolu əlavə et
                     await member.roles.add(selectedRole);
                     
                     await interaction.editReply({

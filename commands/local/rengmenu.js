@@ -5,12 +5,12 @@ const colors = [
     { name: 'Açıq Çəhrayı', id: 'aciq-cehrayi', colorCode: '#ffc0cb', emoji: '🌸' },
     { name: 'Nanə Yaşılı', id: 'nane-yasili', colorCode: '#98ff98', emoji: '🌿' },
     { name: 'Bənövşəyi', id: 'benovseyi', colorCode: '#800080', emoji: '🪻' },
-    { name: 'Şaftalı', id: 'saftali', colorCode: '#ffdab9', emoji: '🍑' },
+    { name: 'Şaftalı', id: 'saftali', colorCode: '#ff7e5f', emoji: '🍑' },
     { name: 'Qızılgül', id: 'qizilgul', colorCode: '#ff007f', emoji: '🌹' },
     { name: 'Limon Sarısı', id: 'limon-sarisi', colorCode: '#fff44f', emoji: '🍋' },
     { name: 'Dəniz Yaşılı', id: 'deniz-yasili', colorCode: '#9fe2bf', emoji: '🍃' },
     { name: 'Bulud Ağı', id: 'bulud-agi', colorCode: '#f5f5f5', emoji: '☁️' },
-    { name: 'Günbatan Narıncı', id: 'gunbatan-narinci', colorCode: '#ff7e5f', emoji: '🌅' }
+    { name: 'Albalı', id: 'albali', colorCode: '#8B0000', emoji: '🍒' }
 ];
 
 module.exports = {
