@@ -47,13 +47,13 @@ module.exports = {
                         let spacing;
                         switch(i) {
                             case 0:
-                                spacing = '⠀';
+                                spacing = '⠀⠀';
                                 break;
                             case 1:
-                                spacing = '⠀';
+                                spacing = '⠀⠀';
                                 break;
                             case 2:
-                                spacing = '⠀⠀';
+                                spacing = '⠀⠀⠀';
                                 break;
                             case 3:
                                 spacing = '⠀⠀⠀';
