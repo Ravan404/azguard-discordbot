@@ -8,7 +8,7 @@ const colors = [
     { name: 'Şaftalı', id: 'saftali', colorCode: '#ffdab9', emoji: '🍑' },
     { name: 'Qızılgül', id: 'qizilgul', colorCode: '#ff007f', emoji: '🌹' },
     { name: 'Limon Sarısı', id: 'limon-sarisi', colorCode: '#fff44f', emoji: '🍋' },
-    { name: 'Dəniz Yaşılı', id: 'deniz-yasili', colorCode: '#9fe2bf', emoji: '🌿' },
+    { name: 'Dəniz Yaşılı', id: 'deniz-yasili', colorCode: '#9fe2bf', emoji: '🍃' },
     { name: 'Bulud Ağı', id: 'bulud-agi', colorCode: '#f5f5f5', emoji: '☁️' },
     { name: 'Günbatan Narıncı', id: 'gunbatan-narinci', colorCode: '#ff7e5f', emoji: '🌅' }
 ];
@@ -41,8 +41,8 @@ module.exports = {
                     let description = '';
 
                     for(let i = 0; i < 5; i++) {
-                        const leftRole = firstHalf[i] ? `### <@&${interaction.guild.roles.cache.find(role => role.name === firstHalf[i].name)?.id}>` : '';
-                        const rightRole = secondHalf[i] ? `<@&${interaction.guild.roles.cache.find(role => role.name === secondHalf[i].name)?.id}>` : '';
+                        const leftRole = firstHalf[i] ? `### <@&${interaction.guild.roles.cache.find(role => role.name === firstHalf[i].name)?.id}> ${firstHalf[i].emoji}` : '';
+                        const rightRole = secondHalf[i] ? `<@&${interaction.guild.roles.cache.find(role => role.name === secondHalf[i].name)?.id}> ${secondHalf[i].emoji}` : '';
                         
                         let spacing;
                         switch(i) {
