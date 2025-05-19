@@ -56,7 +56,7 @@ module.exports = {
                                 spacing = '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀';
                                 break;
                             case 3:
-                                spacing = '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀';
+                                spacing = '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀';
                                 break;
                             case 4:
                                 spacing = '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀';
