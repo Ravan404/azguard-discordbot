@@ -41,9 +41,17 @@ module.exports = {
                     }
 
                     const member = interaction.member;
+
+                    // Əgər istifadəçidə artıq bu rol varsa, onu silək
+                    if (member.roles.cache.has(selectedRole.id)) {
+                        await member.roles.remove(selectedRole);
+                        return await interaction.editReply({
+                            content: `🗑️ **${colorNames[interaction.customId]}** rəngi silindi!`
+                        });
+                    }
+
+                    // Digər rəng rollarını silək
                     const colorRoles = Object.values(colorNames);
-                    
-                    // Mövcud rəng rollarını sil
                     for (const roleName of colorRoles) {
                         const role = interaction.guild.roles.cache.find(r => r.name === roleName);
                         if (role && member.roles.cache.has(role.id)) {
@@ -51,7 +59,7 @@ module.exports = {
                         }
                     }
 
-                    // Yeni rolu əlavə et
+                    // Yeni rolu əlavə edək
                     await member.roles.add(selectedRole);
                     
                     await interaction.editReply({
